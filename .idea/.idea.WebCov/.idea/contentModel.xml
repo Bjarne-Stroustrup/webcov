@@ -13,9 +13,29 @@
     <e p="C:\Users\dnapl\.Rider2019.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\dnapl\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_WebCov.1265237408.00" t="ExcludeRecursive" />
     <e p="C:\Users\dnapl\workspace\github\webcov" t="IncludeFlat">
+      <e p="example" t="Include">
+        <e p="Wikipedia.UI.Tests" t="IncludeRecursive">
+          <e p="bin" t="ExcludeRecursive" />
+          <e p="chromedriver.exe" t="Include" />
+          <e p="Elements" t="Include">
+            <e p="WikiPage.cs" t="Include" />
+            <e p="WikiWelcomeBlock.cs" t="Include" />
+          </e>
+          <e p="obj" t="ExcludeRecursive">
+            <e p="Debug" t="Include">
+              <e p="netcoreapp3.1" t="Include">
+                <e p="Wikipedia.UI.Tests.AssemblyInfo.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="UnitTest1.cs" t="Include" />
+          <e p="Wikipedia.UI.Tests.csproj" t="IncludeRecursive" />
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="src\webcov" t="IncludeRecursive">
         <e p="Attributes" t="Include">
+          <e p="ClassNameAttribute.cs" t="Include" />
           <e p="CssAttribute.cs" t="Include" />
           <e p="SelectorAttribute.cs" t="Include" />
           <e p="XpathAttribute.cs" t="Include" />

@@ -2,7 +2,7 @@
 
 namespace WebCov
 {
-    public abstract class Container
+    public class Container
     {
         public Container ParentContainer { get; internal set; }
 

@@ -13,7 +13,7 @@ namespace WebCov
         public WebElementSearcher(ISearchContext searchContext,  ICollection<By> selectors)
         {
             _searchContext = searchContext;
-            _selector = new ByAll(selectors.ToArray());
+            _selector = new ByChained(selectors.ToArray());
         }
 
         public By Selector => _selector;
