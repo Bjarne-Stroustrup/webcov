@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov", "WebCov\WebCov.csproj", "{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov.Tests", "WebCov.Tests\WebCov.Tests.csproj", "{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
