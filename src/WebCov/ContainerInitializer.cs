@@ -12,9 +12,15 @@ namespace WebCov
         private static readonly Type ContainerBaseType = typeof(Container);
         private static readonly Type SelectorAttributeBaseType = typeof(SelectorAttribute);
 
-        public T Create<T>(IWebDriver webDriver) where T: Container
+        public T Initialize<T>(IWebDriver webDriver) where T: Container
         {
             return (T)CreateContainer(typeof(T), webDriver, new By[]{});
+        }
+
+        public T Initialize<T>(IWebDriver webDriver, T root) where T: Container
+        {
+            InitContainerProps(root, webDriver, new By[]{});
+            return root;
         }
 
         private void InitContainerProps<TContainer>(TContainer container, ISearchContext context, ICollection<By> parentContainerSelectors) where TContainer : Container
