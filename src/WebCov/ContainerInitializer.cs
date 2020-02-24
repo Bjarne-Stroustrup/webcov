@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using OpenQA.Selenium;
+using WebCov.Attributes;
 
 namespace WebCov
 {
     public class ContainerInitializer
     {
-        private readonly Type _containerBaseType = typeof(Container);
-        private readonly Type _selectorAttributeBaseType = typeof(XpathAttribute);
+        private static readonly Type ContainerBaseType = typeof(Container);
+        private static readonly Type SelectorAttributeBaseType = typeof(SelectorAttribute);
 
         public T Create<T>(IWebDriver webDriver) where T: Container
         {
@@ -21,14 +22,14 @@ namespace WebCov
             var containerProps = container.GetType()
                 .GetProperties(BindingFlags.Default)
                 .Where(p =>
-                    _containerBaseType.IsAssignableFrom(p.PropertyType)
-                    && _containerBaseType.GetCustomAttributesData()
-                        .Any(pd => _selectorAttributeBaseType.IsAssignableFrom(pd.AttributeType)))
+                    ContainerBaseType.IsAssignableFrom(p.PropertyType)
+                    && ContainerBaseType.GetCustomAttributesData()
+                        .Any(pd => SelectorAttributeBaseType.IsAssignableFrom(pd.AttributeType)))
                 .ToArray();
 
             foreach (var prop in containerProps)
             {
-                var propSelector = prop.GetCustomAttribute<XpathAttribute>().GetSelector();
+                var propSelector = prop.GetCustomAttribute<SelectorAttribute>().GetSelector();
                 var propSelectors = new List<By>(parentContainerSelectors) {propSelector};
                 var propObject = CreateContainer(prop.PropertyType, context, propSelectors, container);
                 prop.SetValue(container, propObject);

@@ -1,9 +1,9 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace WebCov
+namespace WebCov.Attributes
 {
-    public class XpathAttribute : Attribute
+    public class XpathAttribute : SelectorAttribute
     {
         private readonly string _path;
 
@@ -12,7 +12,7 @@ namespace WebCov
             _path = path;
         }
 
-        public By GetSelector()
+        public override By GetSelector()
         {
             return By.XPath(_path);
         }

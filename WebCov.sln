@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov", "WebCov\WebCov.csproj", "{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov", "src\WebCov\WebCov.csproj", "{4D202AA2-30DD-4833-8FBB-13D3EB7CD6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov.Tests", "WebCov.Tests\WebCov.Tests.csproj", "{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCov.Tests", "src\WebCov.Tests\WebCov.Tests.csproj", "{D5C9E49B-6601-47EE-81D7-84A30AD2ED84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
