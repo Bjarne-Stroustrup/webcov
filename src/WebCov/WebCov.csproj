@@ -2,6 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <PackageVersion>0.1.0</PackageVersion>
+        <Title>WebCov</Title>
+        <Authors>Kirill 'Kira' Lappo</Authors>
+        <Description>Cover Library For Selenium.WebDriver Library</Description>
+        <PackageProjectUrl>https://github.com/Kira-Lappo/webcov</PackageProjectUrl>
+        <PackageLicenseUrl>https://www.gnu.org/licenses/old-licenses/gpl-2.0</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/Kira-Lappo/webcov</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>webdriver,selenium,ui,test</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>

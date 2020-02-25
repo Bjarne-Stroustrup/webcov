@@ -11,14 +11,14 @@ namespace Wikipedia.UI.Tests
     public class Tests
     {
         private RemoteWebDriver _driver;
-        private WikiPage WikiPage;
+        private WelcomePage _welcomePage;
 
         [OneTimeSetUp]
         public void Setup()
         {
             _driver = new ChromeDriver();
             var containerInitializer = new ContainerInitializer();
-            WikiPage = containerInitializer.Initialize<WikiPage>(_driver);
+            _welcomePage = containerInitializer.Create<WelcomePage>(_driver);
         }
 
         [OneTimeTearDown]
@@ -33,9 +33,15 @@ namespace Wikipedia.UI.Tests
             _driver.Navigate().GoToUrl("https://ru.wikipedia.org");
 
             Thread.Sleep(1000);
-            Console.WriteLine(WikiPage.GetStatus());
+            Console.WriteLine(_welcomePage.GetStatus());
 
-            WikiPage.ClickOnLogo();
+            var langCodes = _welcomePage.LanguageSelector.GetAvailableLangCodes();
+
+            Console.WriteLine(string.Join(", ", langCodes));
+
+            _welcomePage.LanguageSelector.SelectLanguage("de");
+
+            _welcomePage.ClickOnLogo();
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Wikipedia.UI.Tests.Elements
         {
             return WikiStatusText.WebElement.Text;
         }
+
     }
 }

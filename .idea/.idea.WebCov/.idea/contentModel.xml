@@ -18,6 +18,8 @@
           <e p="bin" t="ExcludeRecursive" />
           <e p="chromedriver.exe" t="Include" />
           <e p="Elements" t="Include">
+            <e p="LanguageSelector.cs" t="Include" />
+            <e p="WelcomePage.cs" t="Include" />
             <e p="WikiPage.cs" t="Include" />
             <e p="WikiWelcomeBlock.cs" t="Include" />
           </e>
@@ -37,11 +39,15 @@
         <e p="Attributes" t="Include">
           <e p="ClassNameAttribute.cs" t="Include" />
           <e p="CssAttribute.cs" t="Include" />
+          <e p="IdAttribute.cs" t="Include" />
+          <e p="NameAttribute.cs" t="Include" />
           <e p="SelectorAttribute.cs" t="Include" />
           <e p="XpathAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ByExtensions.cs" t="Include" />
         <e p="Container.cs" t="Include" />
+        <e p="ContainerExtensions.cs" t="Include" />
         <e p="ContainerInitializer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

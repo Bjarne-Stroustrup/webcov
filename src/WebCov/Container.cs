@@ -1,15 +1,17 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace WebCov
 {
     public class Container
     {
-        public Container ParentContainer { get; internal set; }
-
         internal WebElementSearcher WebElementSearcher { get; set; }
 
         public IWebElement WebElement => WebElementSearcher.FindElement();
 
-        public By Selector => WebElementSearcher.Selector;
+        public IReadOnlyCollection<IWebElement> WebElements => WebElementSearcher.FindAllElements();
+
+
     }
 }
