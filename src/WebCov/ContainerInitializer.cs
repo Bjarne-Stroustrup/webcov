@@ -30,17 +30,21 @@ namespace WebCov
                 .GetType()
                 .GetProperties(
                     BindingFlags.Public | BindingFlags.NonPublic
-                    | BindingFlags.Static | BindingFlags.Instance
-                    | BindingFlags.FlattenHierarchy)
-                .Where(p =>
-                    ContainerBaseType.IsAssignableFrom(p.PropertyType)
-                    && p.GetCustomAttributesData().Any(pd =>
-                        SelectorAttributeBaseType.IsAssignableFrom(pd.AttributeType)))
-                .ToArray();
+                                        | BindingFlags.Static | BindingFlags.Instance
+                                        | BindingFlags.FlattenHierarchy)
+                .Where(p => ContainerBaseType.IsAssignableFrom(p.PropertyType));
 
             foreach (var prop in containerProps)
             {
-                var propSelector = prop.GetCustomAttribute<SelectorAttribute>().GetSelector();
+                var propAttribute = prop.GetCustomAttribute<SelectorAttribute>()
+                                    ?? prop.PropertyType.GetCustomAttribute<SelectorAttribute>();
+
+                if (propAttribute == null)
+                {
+                    continue;
+                }
+
+                var propSelector = propAttribute.GetSelector();
                 var propSelectors = new List<By>(parentContainerSelectors) {propSelector};
                 var propObject = CreateContainer(prop.PropertyType, searchContext, propSelectors, container);
                 prop.SetValue(container, propObject);
