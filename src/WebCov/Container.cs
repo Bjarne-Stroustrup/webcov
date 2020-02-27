@@ -11,7 +11,5 @@ namespace WebCov
         public IWebElement WebElement => WebElementSearcher.FindElement();
 
         public IReadOnlyCollection<IWebElement> WebElements => WebElementSearcher.FindAllElements();
-
-
     }
 }

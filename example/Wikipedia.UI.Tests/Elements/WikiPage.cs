@@ -4,7 +4,7 @@ using WebCov.Attributes;
 
 namespace Wikipedia.UI.Tests.Elements
 {
-    public class WikiPage : Container
+    public abstract class WikiPage : Container
     {
         // [Xpath("//*[@id='p-logo']")]
         [Id("p-logo")]

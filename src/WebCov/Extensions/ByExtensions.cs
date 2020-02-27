@@ -7,7 +7,7 @@ namespace WebCov
     {
         public static By Nth(this By by, int index)
         {
-            return new ByChained(by, By.XPath($"(../*)[{index}]"));
+            return new ByChained(by, By.XPath($"(../*)[{index + 1}]"));
         }
     }
 }

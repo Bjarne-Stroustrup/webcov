@@ -5,14 +5,17 @@ namespace WebCov
 {
     public static class ContainerExtensions
     {
-        public static IReadOnlyCollection<TContainer> ToSelfCollection<TContainer>(this TContainer container)
-            where TContainer : Container
+        private static readonly ContainerInitializer Initializer = new ContainerInitializer();
+
+        public static IReadOnlyCollection<T> AsContainerCollection<T>(this T container)
+            where T : Container
         {
-            return GetSubContainers<TContainer>(container);
+            return AsContainerCollection<T, T>(container);
         }
 
-        public static IReadOnlyCollection<T> GetSubContainers<T>(this Container container)
+        public static IReadOnlyCollection<T> AsContainerCollection<T, TContainer>(this TContainer container)
             where T : Container
+            where TContainer : Container
         {
             var searcher = container.WebElementSearcher;
 
@@ -24,21 +27,30 @@ namespace WebCov
                 return new T[0];
             }
 
-            var initializer = new ContainerInitializer();
-
-            var baseSelector = searcher.Selector;
-            var searchContext = searcher.Context;
-
             var subContainers = new List<T>();
-            for (var i = 1; i <= containersCount; i++)
+            for (var i = 0; i < containersCount; i++)
             {
-                // BUG Doesn't work starting from i == 2
-                var containerSelector = baseSelector.Nth(i);
-                var subContainer = initializer.Create<T>(searchContext, new[] {containerSelector});
-                subContainers.Add(subContainer);
+                subContainers.Add(container.Nth<T, TContainer>(i));
             }
 
             return subContainers;
         }
+
+        public static T Nth<T>(this T container, int index)
+            where T : Container
+        {
+            return Nth<T, T>(container, index);
+        }
+
+        public static T Nth<T, TContainer>(this TContainer container, int index)
+            where T : Container
+            where TContainer : Container
+        {
+            var containerSelector = container.WebElementSearcher.Selector.Nth(index);
+            var nthContainer = Initializer.Create<T>(container.WebElementSearcher.Context, new[] {containerSelector});
+            return nthContainer;
+        }
     }
+
+
 }

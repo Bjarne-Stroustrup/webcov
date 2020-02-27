@@ -18,7 +18,7 @@
           <e p="bin" t="ExcludeRecursive" />
           <e p="chromedriver.exe" t="Include" />
           <e p="Elements" t="Include">
-            <e p="LanguageLink.cs" t="Include" />
+            <e p="LanguageListItem.cs" t="Include" />
             <e p="LanguageSelector.cs" t="Include" />
             <e p="WelcomePage.cs" t="Include" />
             <e p="WikiPage.cs" t="Include" />
@@ -46,7 +46,6 @@
           <e p="XpathAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="ByExtensions.cs" t="Include" />
         <e p="Container.cs" t="Include" />
         <e p="ContainerExtensions.cs" t="Include" />
         <e p="ContainerInitializer.cs" t="Include" />
@@ -55,6 +54,10 @@
           <e p="DriverType.cs" t="Include" />
           <e p="WebDriverContainer.cs" t="Include" />
           <e p="WebDriverSettings.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="ByExtensions.cs" t="Include" />
+          <e p="EnumerableExtensions.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

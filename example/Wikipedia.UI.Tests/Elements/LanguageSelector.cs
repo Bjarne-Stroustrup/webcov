@@ -2,6 +2,7 @@
 using System.Linq;
 using WebCov;
 using WebCov.Attributes;
+using WebCov.Extensions;
 
 namespace Wikipedia.UI.Tests.Elements
 {
@@ -9,30 +10,29 @@ namespace Wikipedia.UI.Tests.Elements
     [Id("p-lang")]
     public class LanguageSelector : Container
     {
+        private const string LangAttributeName = "lang";
+
         [Xpath(".//li")]
-        private LanguageLink LanguageLinks { get; set; }
+        private LanguageListItem LanguageList { get; set; }
 
         public ICollection<string> GetAvailableLangCodes()
         {
-            return LanguageLinks.ToSelfCollection()
-                .Select(w => w.GetLangCode())
+            return LanguageList.WebElements
+                .Select(w => w.GetAttribute(LangAttributeName))
                 .ToList();
         }
 
         public bool SelectLanguage(string languageCode)
         {
-            var c = LanguageLinks.ToSelfCollection();
+            var langLinkIndex = LanguageList.WebElements
+                .IndexOfFirst(w => w.GetAttribute(LangAttributeName) == languageCode);
 
-            var langLink = c
-                .FirstOrDefault(w =>
-                    string.Equals(w.GetLangCode(), languageCode)
-                );
-
-            if (langLink == null)
+            if (langLinkIndex < 0)
             {
                 return false;
             }
 
+            var langLink = LanguageList.Nth(langLinkIndex);
             langLink.WebElement.Click();
             return true;
         }
