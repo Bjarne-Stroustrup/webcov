@@ -5,15 +5,14 @@ namespace WebCov
 {
     public static class ContainerExtensions
     {
-        public static IReadOnlyCollection<Container> GetContainers<TContainer>(this TContainer container)
+        public static IReadOnlyCollection<TContainer> ToSelfCollection<TContainer>(this TContainer container)
             where TContainer : Container
         {
-            return GetContainers<Container, TContainer>(container);
+            return GetSubContainers<TContainer>(container);
         }
 
-        public static IReadOnlyCollection<T> GetContainers<T, TContainer>(this TContainer container)
+        public static IReadOnlyCollection<T> GetSubContainers<T>(this Container container)
             where T : Container
-            where TContainer : Container
         {
             var searcher = container.WebElementSearcher;
 

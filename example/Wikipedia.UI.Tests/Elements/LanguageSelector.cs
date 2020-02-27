@@ -9,30 +9,23 @@ namespace Wikipedia.UI.Tests.Elements
     [Id("p-lang")]
     public class LanguageSelector : Container
     {
-        private const string LangAttributeName = "lang";
-
-        [Xpath(".//li/a")]
-        private Container LanguageLinks { get; set; }
+        [Xpath(".//li")]
+        private LanguageLink LanguageLinks { get; set; }
 
         public ICollection<string> GetAvailableLangCodes()
         {
-            return LanguageLinks.WebElements
-                .Select(w => w.GetAttribute(LangAttributeName))
+            return LanguageLinks.ToSelfCollection()
+                .Select(w => w.GetLangCode())
                 .ToList();
         }
 
         public bool SelectLanguage(string languageCode)
         {
-            var c = LanguageLinks
-                .GetContainers();
-
-            var innerHtml1 = c.ElementAt(0).WebElement.TagName;
-            var innerHtml2 = c.ElementAt(1).WebElement.Text;
-            var innerHtml3 = c.ElementAt(2).WebElement.Text;
+            var c = LanguageLinks.ToSelfCollection();
 
             var langLink = c
                 .FirstOrDefault(w =>
-                    string.Equals(w.WebElement.GetAttribute(LangAttributeName), languageCode)
+                    string.Equals(w.GetLangCode(), languageCode)
                 );
 
             if (langLink == null)

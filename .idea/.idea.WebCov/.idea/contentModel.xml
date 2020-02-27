@@ -18,6 +18,7 @@
           <e p="bin" t="ExcludeRecursive" />
           <e p="chromedriver.exe" t="Include" />
           <e p="Elements" t="Include">
+            <e p="LanguageLink.cs" t="Include" />
             <e p="LanguageSelector.cs" t="Include" />
             <e p="WelcomePage.cs" t="Include" />
             <e p="WikiPage.cs" t="Include" />
