@@ -50,6 +50,12 @@
         <e p="Container.cs" t="Include" />
         <e p="ContainerExtensions.cs" t="Include" />
         <e p="ContainerInitializer.cs" t="Include" />
+        <e p="Driver" t="Include">
+          <e p="BrowserType.cs" t="Include" />
+          <e p="DriverType.cs" t="Include" />
+          <e p="WebDriverContainer.cs" t="Include" />
+          <e p="WebDriverSettings.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netstandard2.1" t="Include">
