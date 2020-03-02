@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using WebCov.Attributes;
 
 namespace WebCov
@@ -41,16 +42,17 @@ namespace WebCov
 
             foreach (var prop in containerProps)
             {
-                var propAttribute = prop.GetCustomAttribute<SelectorAttribute>()
-                                    ?? prop.PropertyType.GetCustomAttribute<SelectorAttribute>();
+                var selectors = prop.GetCustomAttributes<SelectorAttribute>()
+                        .Concat(prop.PropertyType.GetCustomAttributes<SelectorAttribute>())
+                        .Select(pa => pa.GetSelector())
+                        .ToArray();
 
-                if (propAttribute == null)
+                if (selectors.Length <= 0)
                 {
                     continue;
                 }
 
-                var propSelector = propAttribute.GetSelector();
-                var propSelectors = new List<By>(parentContainerSelectors) {propSelector};
+                var propSelectors = new List<By>(parentContainerSelectors) {new ByAll(selectors)};
                 var propObject = CreateContainer(prop.PropertyType, searchContext, propSelectors);
                 prop.SetValue(container, propObject);
             }

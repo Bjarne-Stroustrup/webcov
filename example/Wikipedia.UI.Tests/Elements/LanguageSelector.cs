@@ -2,7 +2,6 @@
 using System.Linq;
 using WebCov;
 using WebCov.Attributes;
-using WebCov.Extensions;
 
 namespace Wikipedia.UI.Tests.Elements
 {
@@ -12,7 +11,7 @@ namespace Wikipedia.UI.Tests.Elements
     {
         private const string LangAttributeName = "lang";
 
-        [Xpath(".//li")]
+        [Xpath(".//li/a")]
         private LanguageListItem LanguageList { get; set; }
 
         public ICollection<string> GetAvailableLangCodes()
@@ -24,16 +23,15 @@ namespace Wikipedia.UI.Tests.Elements
 
         public bool SelectLanguage(string languageCode)
         {
-            var langLinkIndex = LanguageList.WebElements
-                .IndexOfFirst(w => w.GetAttribute(LangAttributeName) == languageCode);
+            var langLink = LanguageList.WebElements
+                .FirstOrDefault(w => w.GetAttribute(LangAttributeName) == languageCode);
 
-            if (langLinkIndex < 0)
+            if (langLink == null)
             {
                 return false;
             }
 
-            var langLink = LanguageList.Nth(langLinkIndex);
-            langLink.WebElement.Click();
+            langLink.Click();
             return true;
         }
     }

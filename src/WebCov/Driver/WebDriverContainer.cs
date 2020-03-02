@@ -8,7 +8,9 @@ namespace WebCov.Driver
     {
         private IWebDriver _driver;
 
-        public IWebDriver Create(WebDriverSettings settings)
+        public IWebDriver Driver => _driver;
+
+        public IWebDriver StartSession(WebDriverSettings settings)
         {
             if (_driver != null)
             {

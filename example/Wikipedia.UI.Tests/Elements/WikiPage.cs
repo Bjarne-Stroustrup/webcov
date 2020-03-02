@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using WebCov;
 using WebCov.Attributes;
+using WebCov.Extensions;
 
 namespace Wikipedia.UI.Tests.Elements
 {
@@ -15,6 +17,17 @@ namespace Wikipedia.UI.Tests.Elements
         public void ClickOnLogo()
         {
             Logo.WebElement.Click();
+        }
+
+        public bool WaitLogoExists(TimeSpan timeout)
+        {
+            return Logo.WaitUntilExist(timeout);
+        }
+
+        public bool IsLogoExists()
+        {
+            var webElement = Logo.WebElement;
+            return webElement != null && webElement.Displayed;
         }
     }
 }

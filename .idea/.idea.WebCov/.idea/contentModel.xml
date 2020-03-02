@@ -31,8 +31,8 @@
               </e>
             </e>
           </e>
-          <e p="UnitTest1.cs" t="Include" />
           <e p="Wikipedia.UI.Tests.csproj" t="IncludeRecursive" />
+          <e p="WikipediaMainPageTests.cs" t="Include" />
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
@@ -43,11 +43,11 @@
           <e p="IdAttribute.cs" t="Include" />
           <e p="NameAttribute.cs" t="Include" />
           <e p="SelectorAttribute.cs" t="Include" />
+          <e p="TagNameAttribute.cs" t="Include" />
           <e p="XpathAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Container.cs" t="Include" />
-        <e p="ContainerExtensions.cs" t="Include" />
         <e p="ContainerInitializer.cs" t="Include" />
         <e p="Driver" t="Include">
           <e p="BrowserType.cs" t="Include" />
@@ -57,6 +57,7 @@
         </e>
         <e p="Extensions" t="Include">
           <e p="ByExtensions.cs" t="Include" />
+          <e p="ContainerExtensions.cs" t="Include" />
           <e p="EnumerableExtensions.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">

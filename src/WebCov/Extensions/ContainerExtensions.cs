@@ -1,19 +1,37 @@
-﻿using System.Collections.Generic;
-using OpenQA.Selenium;
+﻿using System;
+using System.Collections.Generic;
 
-namespace WebCov
+namespace WebCov.Extensions
 {
     public static class ContainerExtensions
     {
         private static readonly ContainerInitializer Initializer = new ContainerInitializer();
 
-        public static IReadOnlyCollection<T> AsContainerCollection<T>(this T container)
-            where T : Container
+        public static bool WaitUntilExist(this Container container, TimeSpan timeout)
         {
-            return AsContainerCollection<T, T>(container);
+            var endTime = DateTime.Now.Add(timeout);
+            while (true)
+            {
+                if (DateTime.Now > endTime)
+                {
+                    return false;
+                }
+
+                var webElement = container.WebElement;
+                if (webElement != null)
+                {
+                    return true;
+                }
+            }
         }
 
-        public static IReadOnlyCollection<T> AsContainerCollection<T, TContainer>(this TContainer container)
+        public static IReadOnlyCollection<T> AsCollection<T>(this T container)
+            where T : Container
+        {
+            return AsCollection<T, T>(container);
+        }
+
+        public static IReadOnlyCollection<T> AsCollection<T, TContainer>(this TContainer container)
             where T : Container
             where TContainer : Container
         {
@@ -46,11 +64,9 @@ namespace WebCov
             where T : Container
             where TContainer : Container
         {
-            var containerSelector = container.WebElementSearcher.Selector.Nth(index);
+            var containerSelector = container.WebElementSearcher.Selector.IndexCurrentLevel(index);
             var nthContainer = Initializer.Create<T>(container.WebElementSearcher.Context, new[] {containerSelector});
             return nthContainer;
         }
     }
-
-
 }
