@@ -16,7 +16,7 @@ namespace WebCov
         public override IWebElement FindElement(ISearchContext context)
         {
             var elements = FindElements(context);
-            if (elements.Count == 0)
+            if (elements.Count <= 0)
             {
                 throw new NoSuchElementException("Cannot locate an element using " + this);
             };
