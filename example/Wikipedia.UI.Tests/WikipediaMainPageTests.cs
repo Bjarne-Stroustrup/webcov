@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using WebCov;
 using WebCov.Driver;
 using Wikipedia.UI.Tests.Elements;
@@ -26,9 +25,8 @@ namespace Wikipedia.UI.Tests
 
             _driverContainer = new WebDriverContainer();
             _driver = _driverContainer.StartSession(settings);
-            var containerInitializer = new ContainerInitializer();
 
-            _welcomePage = containerInitializer.Create<WelcomePage>(_driver);
+            _welcomePage = Container.Create<WelcomePage>(_driver);
         }
 
         [OneTimeTearDown]

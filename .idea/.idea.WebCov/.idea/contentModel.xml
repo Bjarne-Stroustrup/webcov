@@ -49,7 +49,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ByAny.cs" t="Include" />
         <e p="Container.cs" t="Include" />
-        <e p="ContainerInitializer.cs" t="Include" />
+        <e p="Container.Initialization.cs" t="Include" />
         <e p="Driver" t="Include">
           <e p="BrowserType.cs" t="Include" />
           <e p="DriverType.cs" t="Include" />
@@ -60,6 +60,7 @@
           <e p="ByExtensions.cs" t="Include" />
           <e p="ContainerExtensions.cs" t="Include" />
           <e p="EnumerableExtensions.cs" t="Include" />
+          <e p="WebElementExtensions.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

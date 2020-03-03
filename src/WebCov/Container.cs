@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace WebCov
 {
-    public class Container
+    public partial class Container
     {
         internal WebElementSearcher WebElementSearcher { get; set; }
 

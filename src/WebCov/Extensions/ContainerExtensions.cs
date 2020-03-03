@@ -5,8 +5,6 @@ namespace WebCov.Extensions
 {
     public static class ContainerExtensions
     {
-        private static readonly ContainerInitializer Initializer = new ContainerInitializer();
-
         public static bool WaitUntilExist(this Container container, TimeSpan timeout)
         {
             var endTime = DateTime.Now.Add(timeout);
@@ -65,7 +63,7 @@ namespace WebCov.Extensions
             where TContainer : Container
         {
             var containerSelector = container.WebElementSearcher.Selector.IndexCurrentLevel(index);
-            var nthContainer = Initializer.Create<T>(container.WebElementSearcher.Context, new[] {containerSelector});
+            var nthContainer = Container.Create<T>(container.WebElementSearcher.Context, new[] {containerSelector});
             return nthContainer;
         }
     }

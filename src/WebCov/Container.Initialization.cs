@@ -3,29 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using WebCov.Attributes;
 
 namespace WebCov
 {
-    public class ContainerInitializer
+    public partial class Container
     {
         private static readonly Type ContainerBaseType = typeof(Container);
 
-        internal T Create<T>(ISearchContext searchContext, ICollection<By> selectors)
+        internal static T Create<T>(ISearchContext searchContext, ICollection<By> selectors)
         {
             return (T)CreateContainer(typeof(T), searchContext, selectors);
         }
 
-        public T Create<T>(IWebDriver webDriver) where T: Container
+        public static T Create<T>(ISearchContext searchContext) where T: Container
         {
-            return (T)CreateContainer(typeof(T), webDriver, new By[]{});
+            return (T)CreateContainer(typeof(T), searchContext, new By[]{});
         }
 
-        public T Create<T>(IWebDriver webDriver, T root) where T: Container
+        public static T Init<T>(ISearchContext context, T root) where T: Container
         {
-            InitContainerProps(root, webDriver, new By[]{});
+            InitContainerProps(root, context, new By[]{});
             return root;
+        }
+
+        private static object CreateContainer(Type t, ISearchContext searchContext,  ICollection<By> selectors)
+        {
+            var container = (Container)Activator.CreateInstance(t);
+            container.WebElementSearcher = new WebElementSearcher(searchContext, selectors);
+            InitContainerProps(container, searchContext, selectors);
+            return container;
         }
 
         private static void InitContainerProps<TContainer>(TContainer container, ISearchContext searchContext, ICollection<By> parentContainerSelectors)
@@ -56,14 +63,6 @@ namespace WebCov
                 var propObject = CreateContainer(prop.PropertyType, searchContext, propSelectors);
                 prop.SetValue(container, propObject);
             }
-        }
-
-        private static object CreateContainer(Type t, ISearchContext searchContext,  ICollection<By> selectors)
-        {
-            var container = (Container)Activator.CreateInstance(t);
-            container.WebElementSearcher = new WebElementSearcher(searchContext, selectors);
-            InitContainerProps(container, searchContext, selectors);
-            return container;
         }
     }
 }
