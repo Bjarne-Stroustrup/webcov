@@ -47,6 +47,7 @@
           <e p="XpathAttribute.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ByAny.cs" t="Include" />
         <e p="Container.cs" t="Include" />
         <e p="ContainerInitializer.cs" t="Include" />
         <e p="Driver" t="Include">

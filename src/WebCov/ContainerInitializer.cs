@@ -52,7 +52,7 @@ namespace WebCov
                     continue;
                 }
 
-                var propSelectors = new List<By>(parentContainerSelectors) {new ByAll(selectors)};
+                var propSelectors = new List<By>(parentContainerSelectors) {new ByAny(selectors)};
                 var propObject = CreateContainer(prop.PropertyType, searchContext, propSelectors);
                 prop.SetValue(container, propObject);
             }

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.PageObjects;
 using WebCov;
 using WebCov.Driver;
 using Wikipedia.UI.Tests.Elements;
@@ -46,7 +47,7 @@ namespace Wikipedia.UI.Tests
         public void NavigateToMainPage_CorrectLangVersion()
         {
             var statusRu = _welcomePage.GetStatus();
-            var statusRegexRu = new Regex(@"Сейчас в Википедии [\d\s]+ статьи на русском языке\.");
+            var statusRegexRu = new Regex(@"Сейчас в Википедии ([\d\s]+)+ статьи на русском языке\.");
 
             statusRu.Should()
                 .Match(v => statusRegexRu.IsMatch(v), "russian version should be opened");
@@ -57,10 +58,10 @@ namespace Wikipedia.UI.Tests
         {
             _welcomePage.LanguageSelector.SelectLanguage("be");
             var statusBe = _welcomePage.GetStatus();
-            var statusRegexBe = new Regex("Сейчас в Википедии \\d+ статей на русском языке\\.");
+            var statusRegexBe = new Regex(@"У беларускім раздзеле — ([\d\s]+)+ артыкулы");
 
             statusBe.Should()
-                .Match(v => statusRegexBe.IsMatch(v), "russian version should be changed to belarusian");
+                .Match(v => statusRegexBe.IsMatch(v), "russian version should be changed to belorussian");
         }
 
         [Test]
